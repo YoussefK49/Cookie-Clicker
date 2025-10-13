@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Clicker Deluxe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="resetButton">
+        <button id="resetButton" class="reset-button">Reset</button>
+    </div>
+    
+    <!-- Reset Confirmation Modal -->
+    <div id="resetModal" class="modal">
+        <div class="modal-content">
+            <h3>Reset Game</h3>
+            <p>Are you sure you want to reset your progress? This cannot be undone.</p>
+            <div class="modal-buttons">
+                <button id="confirmReset" class="modal-button confirm">Yes, Reset</button>
+                <button id="cancelReset" class="modal-button cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <div class="game-container">
+        <div class="header">
+            <div class="cookie-counter">
+                <i class="fas fa-cookie-bite"></i>
+                <span id="counter">0</span> cookies
+            </div>
+            <div class="cookies-per-second">
+                <i class="fas fa-bolt"></i>
+                <span id="cps">0</span> per second
+            </div>
+        </div>
+
+        <div class="main-game">
+            <div class="cookie-container">
+                <div id="cookie" class="cookie">🍪</div>
+                <div class="click-effect">+1</div>
+            </div>
+        </div>
+       
+
+        <div class="upgrades">
+            <h3><i class="fas fa-arrow-up"></i> Upgrades</h3>
+            <div class="upgrade" id="cursor">
+                <div class="upgrade-info">
+                    <h4>Cursor</h4>
+                    <p>Each cursor produces 0.1 cookies per second</p>
+                </div>
+                <div class="upgrade-details">
+                    <span class="count">0</span>
+                    <button class="btn-upgrade" data-cost="15">
+                        <span class="cost">15</span> 🍪
+                    </button>
+                </div>
+            </div>
+            
+            <div class="upgrade" id="grandma">
+                <div class="upgrade-info">
+                    <h4>Grandma</h4>
+                    <p>Each grandma produces 1 cookie per second</p>
+                </div>
+                <div class="upgrade-details">
+                    <span class="count">0</span>
+                    <button class="btn-upgrade" data-cost="100">
+                        <span class="cost">100</span> 🍪
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="notifications"></div>
+    <script src="script.js"></script>
+</body>
+</html>
