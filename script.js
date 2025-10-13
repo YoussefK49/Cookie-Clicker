@@ -8,14 +8,12 @@ class Game{
 
     click_cookie(){
         this.cookies = this.cookies + this.click_power;
-        document.getElementById("counter").innerText = Math.floor(this.cookies);
+        document.getElementById("counter").innerText = this.cookies;
     }
 
 }
 
 let game = new Game();
 
-// Add click event to the cookie element
-document.getElementById('cookie').addEventListener('click', function() {
-    game.click_cookie();
-});
+// Add click event to the cookie
+document.getElementById('cookie').addEventListener('click', () => game.click_cookie());
