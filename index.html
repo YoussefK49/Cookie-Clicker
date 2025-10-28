@@ -10,30 +10,11 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="resetButton">
-        <button id="resetButton" class="reset-button">Reset</button>
-    </div>
-    
-    <!-- Reset Confirmation Modal -->
-    <div id="resetModal" class="modal">
-        <div class="modal-content">
-            <h3>Reset Game</h3>
-            <p>Are you sure you want to reset your progress? This cannot be undone.</p>
-            <div class="modal-buttons">
-                <button id="confirmReset" class="modal-button confirm">Yes, Reset</button>
-                <button id="cancelReset" class="modal-button cancel">Cancel</button>
-            </div>
-        </div>
-    </div>
     <div class="game-container">
         <div class="header">
             <div class="cookie-counter">
                 <i class="fas fa-cookie-bite"></i>
                 <span id="counter">0</span> cookies
-            </div>
-            <div class="cookies-per-second">
-                <i class="fas fa-bolt"></i>
-                <span id="cps">0</span> per second
             </div>
         </div>
 
@@ -43,35 +24,47 @@
                 <div class="click-effect">+1</div>
             </div>
         </div>
-       
+     
+            <div class="upgrade" id="click-power">
+                <div class="upgrade-info">
+                    <h4>Click Power</h4>
+                    <p>Dubbel je klikkracht</p>
+                </div>
+                <div class="upgrade-details">
+                    <span id="click_power">1</span>x
+                    <button id="upgrade-click-btn" class="btn-upgrade" data-cost="50">
+                        <span class="cost">50</span> 🍪
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <div class="upgrades">
-            <h3><i class="fas fa-arrow-up"></i> Upgrades</h3>
-            <div class="upgrade" id="cursor">
-                <div class="upgrade-info">
-                    <h4>Cursor</h4>
-                    <p>Each cursor produces 0.1 cookies per second</p>
-                </div>
-                <div class="upgrade-details">
-                    <span class="count">0</span>
-                    <button class="btn-upgrade" data-cost="15">
-                        <span class="cost">15</span> 🍪
-                    </button>
-                </div>
+        </div>
+
+        <div class="upgrade" id="grandma">
+            <div class="upgrade-info">
+                <h4>Oma</h4>
+                <p>Elke oma produceert 1 koekje per seconde</p>
             </div>
-            
-            <div class="upgrade" id="grandma">
-                <div class="upgrade-info">
-                    <h4>Grandma</h4>
-                    <p>Each grandma produces 1 cookie per second</p>
-                </div>
-                <div class="upgrade-details">
-                    <span class="count">0</span>
-                    <button class="btn-upgrade" data-cost="100">
-                        <span class="cost">100</span> 🍪
-                    </button>
-                </div>
+            <div class="upgrade-details">
+                <span id="grandma-count">0</span>x
+                <button id="buy-grandma" class="btn-upgrade" data-cost="150">
+                    <span class="cost">150</span> 🍪
+                </button>
             </div>
+        </div>
+    </div>
+    <div class="upgrade" id="goudmijn"> 
+        <div class="upgrade-info">
+            <h4>Goudmijn</h4>
+            <p>Verhoog je koekproducentie</p>
+        </div>
+        <div class="upgrade-details">
+            <span id="goudmijn-count">0</span>x
+            <button id="buy-goudmijn" class="btn-upgrade" data-cost="500">
+                <span class="cost">500</span> 🍪
+            </button>
         </div>
     </div>
 
