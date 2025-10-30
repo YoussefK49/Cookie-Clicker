@@ -55,6 +55,32 @@ body {
     color: var(--primary-color);
 }
 
+/* Reset Button */
+.btn-reset {
+    background: #ff6b6b;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    margin-left: 10px;
+}
+
+.btn-reset:hover {
+    background: #ff5252;
+    transform: rotate(180deg);
+}
+
+.btn-reset:active {
+    transform: rotate(180deg) scale(0.95);
+}
+
 /* Main Game Area */
 .main-game {
     display: flex;

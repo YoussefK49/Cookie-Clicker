@@ -1,14 +1,29 @@
 class Game {
     constructor() {
-        this.cookies = 0;
-        this.click_power = 1;
-        this.cookies_per_second = 0;
-        this.click_upgrade_cost = 15;
-        this.grandma_cost = 150;
-        this.grandma_count = 0;
-        this.goudmijn_cost = 500;
-        this.goudmijn_count = 0;
-    
+        // Initialize with default values
+        const savedGame = this.loadGame();
+        
+        if (savedGame) {
+            // Load saved game if exists
+            this.cookies = savedGame.cookies || 0;
+            this.click_power = savedGame.click_power || 1;
+            this.cookies_per_second = savedGame.cookies_per_second || 0;
+            this.click_upgrade_cost = savedGame.click_upgrade_cost || 15;
+            this.grandma_cost = savedGame.grandma_cost || 150;
+            this.grandma_count = savedGame.grandma_count || 0;
+            this.goudmijn_cost = savedGame.goudmijn_cost || 500;
+            this.goudmijn_count = savedGame.goudmijn_count || 0;
+        } else {
+            // New game
+            this.cookies = 0;
+            this.click_power = 1;
+            this.cookies_per_second = 0;
+            this.click_upgrade_cost = 15;
+            this.grandma_cost = 150;
+            this.grandma_count = 0;
+            this.goudmijn_cost = 500;
+            this.goudmijn_count = 0;
+        }
         
         this.setupEventListeners();
         this.startGameLoop();
@@ -48,15 +63,46 @@ class Game {
             grandmaBtn.addEventListener('click', () => this.buyGrandma());
         }
 
+        // Buy goudmijn button
         const goudmijnBtn = document.getElementById('buy-goudmijn');
         if (goudmijnBtn) {
             goudmijnBtn.addEventListener('click', () => this.buyGoudmijn());
+        }
+
+        // Reset button
+        const resetBtn = document.getElementById('reset-btn');
+        if (resetBtn) {
+            resetBtn.addEventListener('click', () => this.resetGame());
+        }
+    }
+
+    resetGame() {
+        if (confirm('Weet je zeker dat je het spel wilt resetten? Alle voortgang gaat verloren!')) {
+            // Reset all game state
+            this.cookies = 0;
+            this.click_power = 1;
+            this.cookies_per_second = 0;
+            this.click_upgrade_cost = 15;
+            this.grandma_cost = 150;
+            this.grandma_count = 0;
+            this.goudmijn_cost = 500;
+            this.goudmijn_count = 0;
+            
+            // Clear saved game from localStorage
+            localStorage.removeItem('cookieClickerSave');
+            
+            // Update the UI
+            this.updateUI();
+            
+            // Show confirmation message
+            alert('Spel is gereset!');
         }
     }
 
     click_cookie() {
         this.cookies += this.click_power;
         this.updateUI();
+        this.saveGame();
     }
 
     upgrade_click_power() {
@@ -65,6 +111,7 @@ class Game {
             this.click_power *= 1.5;
             this.click_upgrade_cost = Math.floor(this.click_upgrade_cost * 2);
             this.updateUI();
+            this.saveGame();
         }
     }
 
@@ -75,6 +122,7 @@ class Game {
             this.grandma_cost = Math.floor(this.grandma_cost * 1.5);
             this.cookies_per_second = this.grandma_count;
             this.updateUI();
+            this.saveGame();
         }
     }
 
@@ -85,7 +133,28 @@ class Game {
             this.goudmijn_cost = Math.floor(this.goudmijn_cost * 2);
             this.cookies_per_second = this.goudmijn_count;
             this.updateUI();
+            this.saveGame();
         }
+    }
+
+    saveGame() {
+        const gameState = {
+            cookies: this.cookies,
+            click_power: this.click_power,
+            cookies_per_second: this.cookies_per_second,
+            click_upgrade_cost: this.click_upgrade_cost,
+            grandma_cost: this.grandma_cost,
+            grandma_count: this.grandma_count,
+            goudmijn_cost: this.goudmijn_cost,
+            goudmijn_count: this.goudmijn_count,
+            lastSaved: new Date().toISOString()
+        };
+        localStorage.setItem('cookieClickerSave', JSON.stringify(gameState));
+    }
+
+    loadGame() {
+        const savedGame = localStorage.getItem('cookieClickerSave');
+        return savedGame ? JSON.parse(savedGame) : null;
     }
 
     updateUI() {
