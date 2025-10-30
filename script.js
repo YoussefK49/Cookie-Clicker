@@ -11,6 +11,8 @@ class Game {
             this.grandma_count = savedGame.grandma_count || 0;
             this.goudmijn_cost = savedGame.goudmijn_cost || 500;
             this.goudmijn_count = savedGame.goudmijn_count || 0;
+            this.farm_cost = savedGame.farm_cost || 1000;
+            this.farm_count = savedGame.farm_count || 0;
         } else {
             this.cookies = 0;
             this.click_power = 1;
@@ -20,6 +22,8 @@ class Game {
             this.grandma_count = 0;
             this.goudmijn_cost = 500;
             this.goudmijn_count = 0;
+            this.farm_cost = 1000;
+            this.farm_count = 0;
         }
         
         this.setupEventListeners();
@@ -37,6 +41,11 @@ class Game {
             
             if (this.goudmijn_count > 0) {
                 this.cookies += this.goudmijn_count * 0.4; // 0.4 cookies per goudmijn every 100ms
+                this.updateUI();
+            }
+
+            if (this.farm_count > 0) {
+                this.cookies += this.farm_count * 0.5; // 0.2 cookies per farm every 100ms
                 this.updateUI();
             }
         }, 100);
@@ -60,6 +69,11 @@ class Game {
             goudmijnBtn.addEventListener('click', () => this.buyGoudmijn());
         }
 
+        const farmBtn = document.getElementById('buy-farm');
+        if (farmBtn) {
+            farmBtn.addEventListener('click', () => this.buyFarm())
+        }
+
         const resetBtn = document.getElementById('reset-btn');
         if (resetBtn) {
             resetBtn.addEventListener('click', () => this.resetGame());
@@ -76,6 +90,8 @@ class Game {
             this.grandma_count = 0;
             this.goudmijn_cost = 500;
             this.goudmijn_count = 0;
+            this.farm_cost = 1000;
+            this.farm_count = 0;
             
             localStorage.removeItem('cookieClickerSave');
             
@@ -123,6 +139,17 @@ class Game {
         }
     }
 
+    buyFarm() {
+          if (this.cookies >= this.farm_cost) {
+            this.cookies -= this.farm_cost;
+            this.farm_count++;
+            this.farm_cost = Math.floor(this.farm_cost * 3);
+            this.cookies_per_second = this.farm_count;
+            this.updateUI();
+            this.saveGame();
+        }
+    }
+
     saveGame() {
         const gameState = {
             cookies: this.cookies,
@@ -133,6 +160,8 @@ class Game {
             grandma_count: this.grandma_count,
             goudmijn_cost: this.goudmijn_cost,
             goudmijn_count: this.goudmijn_count,
+            farm_cost: this.farm_cost,
+            farm_count: this.farm_count,
             lastSaved: new Date().toISOString()
         };
         localStorage.setItem('cookieClickerSave', JSON.stringify(gameState));
@@ -178,7 +207,20 @@ class Game {
             goudmijnBtn.disabled = this.cookies < this.goudmijn_cost;
             goudmijnCount.textContent = this.goudmijn_count;
         }
+
+        
+        const farmBtn = document.getElementById('buy-farm');
+        const farmCount = document.getElementById('farm-count');
+        if (farmBtn && farmCount) {
+            const costElement = farmBtn.querySelector('.cost');
+            if (costElement) {
+                costElement.textContent = this.farm_cost;
+            }
+           farmBtn.disabled = this.cookies < this.farm_cost;
+            farmCount.textContent = this.farm_count;
+        }
     }
+    
 
 
 }
