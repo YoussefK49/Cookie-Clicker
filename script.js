@@ -13,6 +13,8 @@ class Game {
             this.goudmijn_count = savedGame.goudmijn_count || 0;
             this.farm_cost = savedGame.farm_cost || 1000;
             this.farm_count = savedGame.farm_count || 0;
+            this.fabriek_cost = savedGame.fabriek_cost || 3000;
+            this.fabriek_count = savedGame.fabriek_count || 0;
         } else {
             this.cookies = 0;
             this.click_power = 1;
@@ -24,6 +26,8 @@ class Game {
             this.goudmijn_count = 0;
             this.farm_cost = 1000;
             this.farm_count = 0;
+            this.fabriek_cost = 3000;
+            this.fabriek_count = 0;
         }
         
         this.setupEventListeners();
@@ -35,19 +39,23 @@ class Game {
     startGameLoop() {
         setInterval(() => {
             if (this.grandma_count > 0) {
-                this.cookies += this.grandma_count * 0.1; // 0.1 cookies per grandma every 100ms
+                this.cookies += this.grandma_count * 0.1;
                 this.updateUI();
             }
             
             if (this.goudmijn_count > 0) {
-                this.cookies += this.goudmijn_count * 0.4; // 0.4 cookies per goudmijn every 100ms
-                this.updateUI();
+                this.cookies += this.goudmijn_count * 0.4;
             }
 
             if (this.farm_count > 0) {
-                this.cookies += this.farm_count * 0.5; // 0.2 cookies per farm every 100ms
+                this.cookies += this.farm_count * 0.6; 
                 this.updateUI();
             }
+            if (this.fabriek_count > 0) {
+                this.cookies += this.fabriek_count * 1.0; 
+                this.updateUI();
+            }
+
         }, 100);
     }   
 
@@ -73,6 +81,10 @@ class Game {
         if (farmBtn) {
             farmBtn.addEventListener('click', () => this.buyFarm())
         }
+        const fabrieKBtn = document.getElementById('buy-fabriek');
+        if (fabrieKBtn) {
+            fabrieKBtn.addEventListener('click', () => this.buyFabriek())
+        }
 
         const resetBtn = document.getElementById('reset-btn');
         if (resetBtn) {
@@ -92,6 +104,8 @@ class Game {
             this.goudmijn_count = 0;
             this.farm_cost = 1000;
             this.farm_count = 0;
+            this.fabriek_cost = 3000;
+            this.fabriek_count = 0;
             
             localStorage.removeItem('cookieClickerSave');
             
@@ -149,6 +163,16 @@ class Game {
             this.saveGame();
         }
     }
+    buyFabriek() {
+          if (this.cookies >= this.fabriek_cost) {
+            this.cookies -= this.fabriek_cost;
+            this.fabriek_count++;
+            this.fabriek_cost = Math.floor(this.fabriek_cost * 4);
+            this.cookies_per_second = this.grandma_count * 0.1 + this.goudmijn_count * 0.4 + this.farm_count * 0.6 + this.fabriek_count * 1.0;
+            this.updateUI();
+            this.saveGame();
+        }
+    }
 
     saveGame() {
         const gameState = {
@@ -162,6 +186,8 @@ class Game {
             goudmijn_count: this.goudmijn_count,
             farm_cost: this.farm_cost,
             farm_count: this.farm_count,
+            fabriek_cost: this.fabriek_cost,
+            fabriek_count: this.fabriek_count,
             lastSaved: new Date().toISOString()
         };
         localStorage.setItem('cookieClickerSave', JSON.stringify(gameState));
@@ -218,6 +244,17 @@ class Game {
             }
            farmBtn.disabled = this.cookies < this.farm_cost;
             farmCount.textContent = this.farm_count;
+        }
+
+        const fabriekBtn = document.getElementById('buy-fabriek');
+        const fabriekCount = document.getElementById('fabriek-count');
+        if (fabriekBtn && fabriekCount) {
+            const costElement = fabriekBtn.querySelector('.cost');
+            if (costElement) {
+                costElement.textContent = this.fabriek_cost;
+            }
+           fabriekBtn.disabled = this.cookies < this.fabriek_cost;
+            fabriekCount.textContent = this.fabriek_count;
         }
     }
     
