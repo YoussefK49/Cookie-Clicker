@@ -15,6 +15,13 @@ class Game {
             this.farm_count = savedGame.farm_count || 0;
             this.fabriek_cost = savedGame.fabriek_cost || 3000;
             this.fabriek_count = savedGame.fabriek_count || 0;
+<<<<<<< HEAD
+=======
+            this.temple_cost = savedGame.temple_cost || 5000;
+            this.temple_count = savedGame.temple_count || 0;
+            this.bank_cost = savedGame.bank_cost || 10000;
+            this.bank_count = savedGame.bank_count || 0;
+>>>>>>> origin/main
         } else {
             this.cookies = 0;
             this.click_power = 1;
@@ -28,6 +35,13 @@ class Game {
             this.farm_count = 0;
             this.fabriek_cost = 3000;
             this.fabriek_count = 0;
+<<<<<<< HEAD
+=======
+            this.temple_cost = 5000;
+            this.temple_count = 0;  
+            this.bank_cost = 10000;
+            this.bank_count = 0;
+>>>>>>> origin/main
         }
         
         this.setupEventListeners();
@@ -55,6 +69,18 @@ class Game {
                 this.cookies += this.fabriek_count * 1.0; 
                 this.updateUI();
             }
+<<<<<<< HEAD
+=======
+            if (this.temple_count > 0) {
+                this.cookies += this.temple_count * 2.0; 
+                this.updateUI();
+            }
+            if (this.bank_count > 0) {
+                this.cookies += this.bank_count * 4.0; 
+                this.updateUI();
+            }
+            
+>>>>>>> origin/main
 
         }, 100);
     }   
@@ -85,6 +111,17 @@ class Game {
         if (fabrieKBtn) {
             fabrieKBtn.addEventListener('click', () => this.buyFabriek())
         }
+<<<<<<< HEAD
+=======
+        const templeBtn = document.getElementById('buy-temple');
+        if (templeBtn) {
+            templeBtn.addEventListener('click', () => this.buyTemple())
+        }
+        const bankBtn = document.getElementById('buy-bank');
+        if (bankBtn) {
+            bankBtn.addEventListener('click', () => this.buyBank())
+        }
+>>>>>>> origin/main
 
         const resetBtn = document.getElementById('reset-btn');
         if (resetBtn) {
@@ -106,6 +143,13 @@ class Game {
             this.farm_count = 0;
             this.fabriek_cost = 3000;
             this.fabriek_count = 0;
+<<<<<<< HEAD
+=======
+            this.temple_cost = 5000;
+            this.temple_count = 0;
+            this.bank_cost = 10000;
+            this.bank_count = 0;
+>>>>>>> origin/main
             
             localStorage.removeItem('cookieClickerSave');
             
@@ -173,6 +217,29 @@ class Game {
             this.saveGame();
         }
     }
+<<<<<<< HEAD
+=======
+    buyTemple() {
+          if (this.cookies >= this.temple_cost) {
+            this.cookies -= this.temple_cost;
+            this.temple_count++; 
+            this.temple_cost = Math.floor(this.temple_cost * 5);
+            this.cookies_per_second = this.grandma_count * 0.1 + this.goudmijn_count * 0.4 + this.farm_count * 0.6 + this.fabriek_count * 1.0 + this.temple_count * 2.0;
+            this.updateUI();
+            this.saveGame();
+        } 
+    }     
+    buyBank() {
+          if (this.cookies >= this.bank_cost) {
+            this.cookies -= this.bank_cost;
+            this.bank_count++;
+            this.bank_cost = Math.floor(this.bank_cost * 6);
+            this.cookies_per_second = this.grandma_count * 0.1 + this.goudmijn_count * 0.4 + this.farm_count * 0.6 + this.fabriek_count * 1.0 + this.temple_count * 2.0 + this.bank_count * 4.0;
+            this.updateUI();
+            this.saveGame();
+        }  
+    }
+>>>>>>> origin/main
 
     saveGame() {
         const gameState = {
@@ -188,6 +255,13 @@ class Game {
             farm_count: this.farm_count,
             fabriek_cost: this.fabriek_cost,
             fabriek_count: this.fabriek_count,
+<<<<<<< HEAD
+=======
+            temple_cost: this.temple_cost,
+            temple_count: this.temple_count,
+            bank_cost: this.bank_cost,
+            bank_count: this.bank_count,
+>>>>>>> origin/main
             lastSaved: new Date().toISOString()
         };
         localStorage.setItem('cookieClickerSave', JSON.stringify(gameState));
@@ -256,14 +330,32 @@ class Game {
            fabriekBtn.disabled = this.cookies < this.fabriek_cost;
             fabriekCount.textContent = this.fabriek_count;
         }
+<<<<<<< HEAD
+=======
+        const templeBtn = document.getElementById('buy-temple');
+        const templeCount = document.getElementById('temple-count'); 
+        if (templeBtn && templeCount) {
+            const costElement = templeBtn.querySelector('.cost');
+            if (costElement) {
+                costElement.textContent = this.temple_cost;
+            }
+              templeBtn.disabled = this.cookies < this.temple_cost;
+            templeCount.textContent = this.temple_count;   
+>>>>>>> origin/main
     }
-    
 
-
+        const bankBtn = document.getElementById('buy-bank');
+        const bankCount = document.getElementById('bank-count');    
+        if (bankBtn && bankCount) {
+            const costElement = bankBtn.querySelector('.cost');
+            if (costElement) {
+                costElement.textContent = this.bank_cost;
+            }
+                bankBtn.disabled = this.cookies < this.bank_cost;
+            bankCount.textContent = this.bank_count;
+        }
+    }
 }
-
-
-
 
 document.addEventListener('DOMContentLoaded', () => {
     const game = new Game();
