@@ -15,13 +15,10 @@ class Game {
             this.farm_count = savedGame.farm_count || 0;
             this.fabriek_cost = savedGame.fabriek_cost || 3000;
             this.fabriek_count = savedGame.fabriek_count || 0;
-<<<<<<< HEAD
-=======
             this.temple_cost = savedGame.temple_cost || 5000;
             this.temple_count = savedGame.temple_count || 0;
             this.bank_cost = savedGame.bank_cost || 10000;
             this.bank_count = savedGame.bank_count || 0;
->>>>>>> origin/main
         } else {
             this.cookies = 0;
             this.click_power = 1;
@@ -35,13 +32,10 @@ class Game {
             this.farm_count = 0;
             this.fabriek_cost = 3000;
             this.fabriek_count = 0;
-<<<<<<< HEAD
-=======
             this.temple_cost = 5000;
             this.temple_count = 0;  
             this.bank_cost = 10000;
             this.bank_count = 0;
->>>>>>> origin/main
         }
         
         this.setupEventListeners();
@@ -69,8 +63,6 @@ class Game {
                 this.cookies += this.fabriek_count * 1.0; 
                 this.updateUI();
             }
-<<<<<<< HEAD
-=======
             if (this.temple_count > 0) {
                 this.cookies += this.temple_count * 2.0; 
                 this.updateUI();
@@ -80,7 +72,6 @@ class Game {
                 this.updateUI();
             }
             
->>>>>>> origin/main
 
         }, 100);
     }   
@@ -111,8 +102,6 @@ class Game {
         if (fabrieKBtn) {
             fabrieKBtn.addEventListener('click', () => this.buyFabriek())
         }
-<<<<<<< HEAD
-=======
         const templeBtn = document.getElementById('buy-temple');
         if (templeBtn) {
             templeBtn.addEventListener('click', () => this.buyTemple())
@@ -121,7 +110,6 @@ class Game {
         if (bankBtn) {
             bankBtn.addEventListener('click', () => this.buyBank())
         }
->>>>>>> origin/main
 
         const resetBtn = document.getElementById('reset-btn');
         if (resetBtn) {
@@ -143,13 +131,10 @@ class Game {
             this.farm_count = 0;
             this.fabriek_cost = 3000;
             this.fabriek_count = 0;
-<<<<<<< HEAD
-=======
             this.temple_cost = 5000;
             this.temple_count = 0;
             this.bank_cost = 10000;
             this.bank_count = 0;
->>>>>>> origin/main
             
             localStorage.removeItem('cookieClickerSave');
             
@@ -217,8 +202,6 @@ class Game {
             this.saveGame();
         }
     }
-<<<<<<< HEAD
-=======
     buyTemple() {
           if (this.cookies >= this.temple_cost) {
             this.cookies -= this.temple_cost;
@@ -239,7 +222,6 @@ class Game {
             this.saveGame();
         }  
     }
->>>>>>> origin/main
 
     saveGame() {
         const gameState = {
@@ -255,13 +237,10 @@ class Game {
             farm_count: this.farm_count,
             fabriek_cost: this.fabriek_cost,
             fabriek_count: this.fabriek_count,
-<<<<<<< HEAD
-=======
             temple_cost: this.temple_cost,
             temple_count: this.temple_count,
             bank_cost: this.bank_cost,
             bank_count: this.bank_count,
->>>>>>> origin/main
             lastSaved: new Date().toISOString()
         };
         localStorage.setItem('cookieClickerSave', JSON.stringify(gameState));
@@ -330,8 +309,6 @@ class Game {
            fabriekBtn.disabled = this.cookies < this.fabriek_cost;
             fabriekCount.textContent = this.fabriek_count;
         }
-<<<<<<< HEAD
-=======
         const templeBtn = document.getElementById('buy-temple');
         const templeCount = document.getElementById('temple-count'); 
         if (templeBtn && templeCount) {
@@ -341,7 +318,6 @@ class Game {
             }
               templeBtn.disabled = this.cookies < this.temple_cost;
             templeCount.textContent = this.temple_count;   
->>>>>>> origin/main
     }
 
         const bankBtn = document.getElementById('buy-bank');
