@@ -19,109 +19,196 @@
                     <i class="fas fa-redo"></i>
                 </button>
             </div>
+            <!-- Theme Selector -->
+            <div class="theme-selector">
+                <button class="theme-btn" data-theme="default" title="Cookie Theme" aria-label="Switch to Cookie Theme"></button>
+                <button class="theme-btn" data-theme="space" title="Space Theme" aria-label="Switch to Space Theme"></button>
+                <button class="theme-btn" data-theme="forest" title="Forest Theme" aria-label="Switch to Forest Theme"></button>
+                <button class="theme-btn" data-theme="dark" title="Dark Theme" aria-label="Switch to Dark Theme"></button>
+            </div>
         </div>
 
         <div class="main-game">
             <div class="cookie-container">
-                <div id="cookie" class="cookie">🍪</div>
+                <button id="cookie" class="cookie" aria-label="Click to earn cookies">🍪</button>
                 <div class="click-effect">+1</div>
             </div>
         </div>
      
-            <div class="upgrade" id="click-power">
-                <div class="upgrade-info">
-                    <h4>Click Power</h4>
-                    <p>Dubbel je klikkracht</p>
-                </div>
-                <div class="upgrade-details">
-                    <span id="click_power">1</span>x
-                    <button id="upgrade-click-btn" class="btn-upgrade" data-cost="50">
-                        <span class="cost">50</span> 🍪
-                    </button>
-                </div>
+    <h3 class="upgrades-header">Click Upgrades</h3>
+    <div class="upgrades-container">
+        <div class="upgrade" id="click-power">
+            <div class="upgrade-info">
+                <h4>Basis Klik</h4>
+                <p>Verhoog je klikkracht met 10%</p>
+            </div>
+            <div class="upgrade-details">
+                <span class="upgrade-count" id="click_power">1</span>x
+                <button id="upgrade-click-btn" class="btn-upgrade" data-cost="15">
+                    <span class="cost">15</span> 🍪
+                </button>
+            </div>
+        </div>
+
+        <div class="upgrade" id="power-click">
+            <div class="upgrade-info">
+                <h4>Kracht Klik</h4>
+                <p>Verhoog je klikkracht met 2x</p>
+            </div>
+            <div class="upgrade-details">
+                <span class="upgrade-count" id="power_click">0</span>x
+                <button id="buy-power-click" class="btn-upgrade" data-cost="100">
+                    <span class="cost">100</span> 🍪
+                </button>
+            </div>
+        </div>
+
+        <div class="upgrade" id="super-click">
+            <div class="upgrade-info">
+                <h4>Super Klik</h4>
+                <p>Verhoog je klikkracht met 5x</p>
+            </div>
+            <div class="upgrade-details">
+                <span class="upgrade-count" id="super_click">0</span>x
+                <button id="buy-super-click" class="btn-upgrade" data-cost="1000">
+                    <span class="cost">1,000</span> 🍪
+                </button>
+            </div>
+        </div>
+
+        <div class="upgrade" id="mega-click">
+            <div class="upgrade-info">
+                <h4>Mega Klik</h4>
+                <p>Verhoog je klikkracht met 10x</p>
+            </div>
+            <div class="upgrade-details">
+                <span class="upgrade-count" id="mega_click">0</span>x
+                <button id="buy-mega-click" class="btn-upgrade" data-cost="5000">
+                    <span class="cost">5,000</span> 🍪
+                </button>
+            </div>
+        </div>
+
+        <div class="upgrade" id="ultra-click">
+            <div class="upgrade-info">
+                <h4>Ultra Klik</h4>
+                <p>Verhoog je klikkracht met 20x</p>
+            </div>
+            <div class="upgrade-details">
+                <span class="upgrade-count" id="ultra_click">0</span>x
+                <button id="buy-ultra-click" class="btn-upgrade" data-cost="25000">
+                    <span class="cost">25,000</span> 🍪
+                </button>
             </div>
         </div>
     </div>
 
-        </div>
-
+    <h3 class="upgrades-header">Automatische Upgrades</h3>
+    <div class="upgrades-container">
         <div class="upgrade" id="grandma">
             <div class="upgrade-info">
                 <h4>Oma</h4>
-                <p>verhoogd je cookies over time</p>
+                <p>Produceert 0.1 koekjes per seconde</p>
             </div>
             <div class="upgrade-details">
-                <span id="grandma-count">0</span>x
+                <span class="upgrade-count" id="grandma-count">0</span>x
                 <button id="buy-grandma" class="btn-upgrade" data-cost="150">
                     <span class="cost">150</span> 🍪
                 </button>
             </div>
         </div>
+
+        <div class="upgrade" id="goudmijn">
+            <div class="upgrade-info">
+                <h4>Goudmijn</h4>
+                <p>Produceert 0.4 koekjes per seconde</p>
+            </div>
+            <div class="upgrade-details">
+                <span class="upgrade-count" id="goudmijn-count">0</span>x
+                <button id="buy-goudmijn" class="btn-upgrade" data-cost="500">
+                    <span class="cost">500</span> 🍪
+                </button>
+            </div>
+        </div>
+
+        <div class="upgrade" id="farm">
+            <div class="upgrade-info">
+                <h4>Farm</h4>
+                <p>Produceert 0.6 koekjes per seconde</p>
+            </div>
+            <div class="upgrade-details">
+                <span class="upgrade-count" id="farm-count">0</span>x
+                <button id="buy-farm" class="btn-upgrade" data-cost="1000">
+                    <span class="cost">1000</span> 🍪
+                </button>
+            </div>
+        </div>
+
+        <div class="upgrade" id="fabriek">
+            <div class="upgrade-info">
+                <h4>Fabriek</h4>
+                <p>Produceert 1.0 koekjes per seconde</p>
+            </div>
+            <div class="upgrade-details">
+                <span class="upgrade-count" id="fabriek-count">0</span>x
+                <button id="buy-fabriek" class="btn-upgrade" data-cost="3000">
+                    <span class="cost">3000</span> 🍪
+                </button>
+            </div>
+        </div>
+
+        <div class="upgrade" id="temple">
+            <div class="upgrade-info">
+                <h4>Temple</h4>
+                <p>Produceert 2.0 koekjes per seconde</p>
+            </div>
+            <div class="upgrade-details">
+                <span class="upgrade-count" id="temple-count">0</span>x
+                <button id="buy-temple" class="btn-upgrade" data-cost="5000">
+                    <span class="cost">5000</span> 🍪
+                </button>
+            </div>
+        </div>
+
+        <div class="upgrade" id="bank">
+            <div class="upgrade-info">
+                <h4>Bank</h4>
+                <p>Produceert 4.0 koekjes per seconde</p>
+            </div>
+            <div class="upgrade-details">
+                <span class="upgrade-count" id="bank-count">0</span>x
+                <button id="buy-bank" class="btn-upgrade" data-cost="10000">
+                    <span class="cost">10000</span> 🍪
+                </button>
+            </div>
+        </div>
+
+        <div class="upgrade" id="ship">
+            <div class="upgrade-info">
+                <h4>Ship</h4>
+                <p>Produceert 8.0 koekjes per seconde</p>
+            </div>
+            <div class="upgrade-details">
+                <span class="upgrade-count" id="ship-count">0</span>x
+                <button id="buy-ship" class="btn-upgrade" data-cost="15000">
+                    <span class="cost">15000</span> 🍪
+                </button>
+            </div>
+        </div>
+
+        <div class="upgrade" id="portal">
+            <div class="upgrade-info">
+                <h4>Portal</h4>
+                <p>Produceert 16.0 koekjes per seconde</p>
+            </div>
+            <div class="upgrade-details">
+                <span class="upgrade-count" id="portal-count">0</span>x
+                <button id="buy-portal" class="btn-upgrade" data-cost="20000">
+                    <span class="cost">20000</span> 🍪
+                </button>
+            </div>
+        </div>
     </div>
-    <div class="upgrade" id="goudmijn"> 
-        <div class="upgrade-info">
-            <h4>Goudmijn</h4>
-            <p>verhoogd je cookies over time</p>
-        </div>
-        <div class="upgrade-details">
-            <span id="goudmijn-count">0</span>x
-            <button id="buy-goudmijn" class="btn-upgrade" data-cost="500">
-                <span class="cost">500</span> 🍪
-            </button>
-        </div>
-    </div>
-
-    <div class="upgrade" id="farm">
-        <div class="upgrade-info">
-            <h4>Farm</h4>
-            <p>verhoogd je cookies over time</p>
-        </div>
-        <div class="upgrade-details">
-            <span id="farm-count">0</span>x
-            <button id="buy-farm" class="btn-upgrade" data-cost="1000">
-                <span class="cost">1000</span> 🍪
-        </button>
-         </div>
-    </div>     
-
-    <div class="upgrade" id="fabriek">
-        <div class="upgrade-info">
-            <h4>Fabriek</h4>
-            <p>verhoogd je cookies over time</p>
-        </div>
-        <div class="upgrade-details">
-            <span id="fabriek-count">0</span>x
-            <button id="buy-fabriek" class="btn-upgrade" data-cost="3000">
-                <span class="cost">3000</span> 🍪
-        </button>
-         </div>
-
-
-    </div>    
-    <div class="upgrade" id="temple">
-        <div class="upgrade-info">
-            <h4>Temple</h4>
-            <p>verhoogd je cookies over time</p>
-        </div>
-        <div class="upgrade-details">
-            <span id="temple-count">0</span>x
-            <button id="buy-temple" class="btn-upgrade" data-cost="5000">
-                <span class="cost">5000</span> 🍪
-        </button>
-         </div>
-
-    </div>  
-    <div class="upgrade" id="bank">
-        <div class="upgrade-info">
-            <h4>Bank</h4>
-            <p>verhoogd je cookies over time</p>
-        </div>
-        <div class="upgrade-details">
-            <span id="bank-count">0</span>x
-            <button id="buy-bank" class="btn-upgrade" data-cost="10000">
-                <span class="cost">10000</span> 🍪
-        </button>
-         </div>
 
     <div class="notifications"></div>
     <script src="script.js"></script>
